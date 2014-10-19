@@ -22,7 +22,12 @@
 </head>
 
 <body ng-controller="galleryController">
+
+<h2>{{title}}</h2>
+
 <div id="myGallery">
+    <img ng-repeat="buzz in buzzes" ng-src="buzz.image"></img>
 </div>
+
 </body>
 </html>
