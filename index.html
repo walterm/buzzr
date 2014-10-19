@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="buzzrApp">
 <head>
 
 <script src="http://js.leapmotion.com/leap-0.6.0.js"></script>
 <script src="http://js.leapmotion.com/leap-plugins-0.1.3.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-<link type="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"></link>
-<link type="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"></link>
+<link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css"></link>
+<link rel="stylesheet" media="screen" type="text/css" href="assets/spacegallery/css/spacegallery.css" />
+<script type="text/javascript" src="asets/spacegallery/js/eye.js"></script>
+<script type="text/javascript" src="assets/spacegallery/js/utils.js"></script>
+<script type="text/javascript" src="assets/spacegallery/js/spacegallery.js"></script>
 
 <!-- AngularJS -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
 
+
+<!-- Custom JS -->
+<script type="text/javascript" src="assets/js/index.js"></script>
 </head>
 
-<body>
-
+<body ng-controller="galleryController">
+<div id="myGallery">
+</div>
 </body>
 </html>
