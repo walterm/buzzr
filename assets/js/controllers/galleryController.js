@@ -1,10 +1,12 @@
 var app = angular.module("buzzrApp", []);
+$('#myGallery').spacegallery({loadingClass: 'loading'});
 
 app.controller("galleryController", function ($scope) {
     var cur_time = new Date();
     var prev_time = new Date();
     $scope.buzzes = [];
     $scope.header = "";
+    $scope.likes = [];
     prev_time.setDate(prev_time.getDate() - 1);
     // Setting up leap motion controller
     var controllerOptions = {enableGestures: true};
@@ -15,11 +17,22 @@ app.controller("galleryController", function ($scope) {
 
     loopcontroller.on("gesture", function(gesture){
         if(gesture.type === "swipe"){
+            if($("#myGallery img")[$("myGallery img").length-1].attr("data-done") == "true") {
+                $("#myGallery").html("You are done! Wait 24 hours.");
+            }
+
             var now = new Date().getTime();
             if(now - time > 500){
-                if(gesture.direction[0] > 0)
+                if(gesture.direction[0] > 0) {
                     // right case
-                else // left case
+                    $scope.likes.push(scope.buzzes.pop())
+                } else {
+                    // left case
+                    $scope.buzzes.pop();
+                }
+                $scope.header = $scope.buzzes[$scope.buzzes.length].title;
+                $("#myGallery img")[$("myGallery img").length-1].css('display', 'none').attr('data-done', 'true');
+                $("#myGallery a").click();
             }
         }
     });
