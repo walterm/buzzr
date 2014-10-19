@@ -25,17 +25,30 @@
 
 <body ng-controller="galleryController">
 
-<h2>{{header}}</h2>
 
+<nav class="navbar navbar-default" role="navigation">
+<center>
+<div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Buzzr</a>
+  </div><!-- /.container-fluid -->
+  </center>
+</nav>
 <div id="myGallery">
+    <h2>{{header}}</h2>
     <img ng-repeat="buzz in buzzes" ng-src="{{buzz.image}}"></img>
-</div>
 
 <div id="likes">
     <ul>
-        <li ng-repeat="like in likes"><a href="http://buzzfeed.com/{{like.username}}/{{like.uri}}">{{like.title}}</a></li> 
+        <li ng-repeat="like in likes"><a href="http://buzzfeed.com/{{like.username}}/{{like.uri}}">{{toTrusted(like.title)}}</a></li> 
     </ul>
 </div>
-
+</div>
 </body>
 </html>

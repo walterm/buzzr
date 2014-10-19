@@ -8,7 +8,7 @@ var time = new Date().getTime(),
     loopcontroller = new Leap.Controller(controllerOptions);
 loopcontroller.connect();
 
-app.controller("galleryController", function ($scope) {
+app.controller("galleryController", function ($scope, $sce) {
     var cur_time = new Date();
     var prev_time = new Date();
     $scope.buzzes = [];
@@ -16,6 +16,11 @@ app.controller("galleryController", function ($scope) {
     $scope.likes = [];
     prev_time.setDate(prev_time.getDate() - 1);
 
+    $scope.toTrusted = function (htmlCode) {
+        var out = htmlCode.replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); });
+        console.dir(out);
+        return out;
+    };
 
     loopcontroller.on("gesture", function(gesture){
         if(gesture.type === "swipe"){
@@ -30,6 +35,7 @@ app.controller("galleryController", function ($scope) {
                 if(gesture.direction[0] > 0) {
                     // right case
                     console.dir("swipe right");
+                    $($("#myGallery img")[leng-1]).show("slide", { direction: "left" }, 1000);
                     $scope.likes.push($scope.buzzes.pop());
                 } else {
                     // left case
@@ -37,7 +43,7 @@ app.controller("galleryController", function ($scope) {
                     $scope.buzzes.pop();
                 }
                 time = now;
-                $scope.header = $scope.buzzes[$scope.buzzes.length-1].title;
+                $scope.header = $scope.toTrusted($scope.buzzes[$scope.buzzes.length-1].title)
                 $scope.$apply();
             }
         }
@@ -49,7 +55,8 @@ app.controller("galleryController", function ($scope) {
     }).done( function (e) {
         $scope.buzzes.push(e.buzzes);
         $scope.buzzes = $scope.buzzes[0];
-        $scope.header = $scope.buzzes[$scope.buzzes.length-1].title
+        $scope.header = $scope.toTrusted($scope.buzzes[$scope.buzzes.length-1].title)
         buzzes = $scope.buzzes;
     });
 });
+
