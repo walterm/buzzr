@@ -1,0 +1,10 @@
+#myGallery img {
+    width: 400px;
+    position: absolute;
+    margin: 0 auto;
+}
+
+#likes {
+    position: absolute;
+    right: 0px;
+}

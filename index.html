@@ -9,12 +9,14 @@
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css"></link>
 <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-theme.min.css"></link>
 <link rel="stylesheet" media="screen" type="text/css" href="assets/spacegallery/css/spacegallery.css" />
-<script type="text/javascript" src="asets/spacegallery/js/eye.js"></script>
+<script type="text/javascript" src="assets/spacegallery/js/eye.js"></script>
 <script type="text/javascript" src="assets/spacegallery/js/utils.js"></script>
 <script type="text/javascript" src="assets/spacegallery/js/spacegallery.js"></script>
+<link rel="stylesheet" href="assets/styles/index.css"></link>
 
 <!-- AngularJS -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script type="text/javascript" src="assets/js/controllers/galleryController.js"></script>
 
 
 <!-- Custom JS -->
@@ -23,10 +25,16 @@
 
 <body ng-controller="galleryController">
 
-<h2>{{title}}</h2>
+<h2>{{header}}</h2>
 
 <div id="myGallery">
-    <img ng-repeat="buzz in buzzes" ng-src="buzz.image"></img>
+    <img ng-repeat="buzz in buzzes" ng-src="{{buzz.image}}"></img>
+</div>
+
+<div id="likes">
+    <ul>
+        <li ng-repeat="like in likes"><a href="http://buzzfeed.com/{{like.username}}/{{like.uri}}">{{like.title}}</a></li> 
+    </ul>
 </div>
 
 </body>
